@@ -1,0 +1,86 @@
+<html>
+<head>
+<script>
+var canvas;
+var ctx;
+var x=100, y=100;
+var x1=200, y1=200;
+var isPressed=false;
+var isPressed1=false;
+var dx=0, dy=0;
+var dx1=0, dy1=0;
+var size=50;
+function init() {
+var canvas=document.getElementById('canvas');
+var ctx=canvas.getContext('2d');
+document.addEventListener("mousemove", drag);
+document.addEventListener("mousedown", down);
+document.addEventListener("mouseup", up);
+document.addEventListener("mousemove", drag1);
+document.addEventListener("mousedown", down1);
+document.addEventListener("mouseup", up1);
+document.addEventListener("keydown", move);
+ctx.beginPath();
+ctx.fillStyle="blue";
+ctx.fillRect(x,y,size,size);
+ctx.strokeRect(0,0,800,400);
+ctx.closePath();
+ctx.beginPath();
+ctx.fillStyle="blue";
+ctx.fillRect(x1,y1,size,size);
+ctx.closePath();}
+function down(event) {
+dx=event.offsetX-x;
+dy=event.offsetY-y;
+isPressed=true;}
+function up() {
+isPressed=false;
+var canvas=document.getElementById('canvas');
+var ctx=canvas.getContext('2d');
+if (ctx.fillStyle='blue') {ctx.fillStyle='blue'; ctx.fillRect(x,y,size,size);} else {
+if (ctx.fillStyle='yellow') {ctx.fillStyle='yellow'; ctx.fillRect(x,y,size,size);} else {
+if (ctx.fillStyle='red') {ctx.fillStyle='red'; ctx.fillRect(x,y,size,size);}}}}
+function drag(event) {
+if (isPressed && dx>0 && dy>0 && dx<size && dy<size) {
+var canvas=document.getElementById('canvas');
+var ctx=canvas.getContext('2d');
+ctx.clearRect(x,y,size,size);
+x=event.offsetX-dx;
+y=event.offsetY-dy;
+ctx.fillStyle='gray';
+ctx.fillRect(x,y,size,size);}}
+function down1(event) {
+dx1=event.offsetX-x1;
+dy1=event.offsetY-y1;
+isPressed1=true;}
+function up1() {
+isPressed1=false;
+var canvas=document.getElementById('canvas');
+var ctx=canvas.getContext('2d');
+if (ctx.fillStyle='blue') {ctx.fillStyle='blue'; ctx.fillRect(x1,y1,size,size);} else {
+if (ctx.fillStyle='yellow') {ctx.fillStyle='yellow'; ctx.fillRect(x1,y1,size,size);} else {
+if (ctx.fillStyle='red') {ctx.fillStyle='red'; ctx.fillRect(x1,y1,size,size);}}}}
+function drag1(event) {
+if (isPressed1 && dx1>0 && dy1>0 && dx1<size && dy1<size) {
+var canvas=document.getElementById('canvas');
+var ctx=canvas.getContext('2d');
+ctx.clearRect(x1,y1,size,size);
+x1=event.offsetX-dx1;
+y1=event.offsetY-dy1;
+ctx.fillStyle='gray';
+ctx.fillRect(x1,y1,size,size);}}
+function move(event) {
+if (event.keyCode == 97) {var canvas=document.getElementById('canvas');
+var ctx=canvas.getContext('2d'); ctx.fillStyle='yellow';}
+if (event.keyCode == 98) {var canvas=document.getElementById('canvas');
+var ctx=canvas.getContext('2d'); ctx.fillStyle='blue'; ctx.fillRect(x,y,size,size); ctx.fillRect(x1,y1,size,size);}
+if (event.keyCode == 99) {var canvas=document.getElementById('canvas');
+var ctx=canvas.getContext('2d'); ctx.fillStyle='red'; ctx.fillRect(x,y,size,size); ctx.fillRect(x1,y1,size,size);}}
+</script>
+</head>
+<body onload="init()">
+<canvas id ="canvas" width ="1000" height="1000">
+</canvas>
+</body>
+</html>
+</html>
